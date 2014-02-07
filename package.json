@@ -1,0 +1,25 @@
+{
+    "name": "wListView",
+    "author": "Widget Developer",
+	"contributors": [
+	    "Developer 1", 
+	    "Developer 2"
+	],
+    "version": "1.0.0",
+    "copyright": "(c) 2013 Widget Developer",
+	"repository": {
+	    "type": "git",
+	    "url": "https://github.com/developer/Widget.git"
+	},
+	"keywords": ["wakanda", "widget"],
+	"engines": {"wakanda" : ">= 6"},
+	"license": "MIT", 
+    "loadDependencies": [
+    	{"id": "Widget_V2"},
+        {"id": "wListView/source-navigation.js", "version": "1.0.0", "path": "WIDGETS_CUSTOM"},
+        {"id": "wListView/templates.js", "version": "1.0.0", "path": "WIDGETS_CUSTOM"},
+        {"id": "wListView/widget.js", "version": "1.0.0", "path": "WIDGETS_CUSTOM"},        
+        {"id": "wListView/css/widget.css", "version": "1.0.0", "path": "WIDGETS_CUSTOM"},
+        {"id": "wListView/designer.js", "studioOnly": true, "version": "1.0.0", "path": "WIDGETS_CUSTOM"}
+    ]
+}
