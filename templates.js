@@ -7,11 +7,11 @@ WAF.define('wListView/templates', function() {
             },
             {
                 description: 'listView 2',
-                template: '{{#each items}}<li>{{ID}}</li>{{/each}}'
+                template: '<li>{{ID}}</li>'
             },
             {
                 description: 'listView 3',
-                template: '{{#each items}}<li>{{title}}</li>{{/each}}'
+                template: '<li>{{title}}</li>'
             }
         ],
         defaultData: {
