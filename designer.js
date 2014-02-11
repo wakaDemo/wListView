@@ -94,8 +94,8 @@
         setDesignerHtml(tag, templateInfo.defaultText);
     });
 
-    wListView.on('Save', function(tag) {
-        var node = tag && tag.getElementNode() || null;
+    wListView.on('Save', function() {
+        var node = this && this.getElementNode() || null;
         
         if (node && node._json.childNodes) {
             node._json.childNodes.length = 0;
@@ -188,10 +188,9 @@
                 optionsToUpdate,
                 templateInfo;
             
-                optionsToUpdate = tag.getAttributeOptions('data-variables-binding', 1);
-                templateInfo = parseTemplate(tag.getWidget()._templates.list[templateNum].template, optionsToUpdate, tag.getWidget()._templates.defaultData);
-            
             updateAttributesList(tag, this.getValue());
+            optionsToUpdate = tag.getAttributeOptions('data-variables-binding', 1);
+            templateInfo = parseTemplate(tag.getWidget()._templates.list[templateNum].template, optionsToUpdate, tag.getWidget()._templates.defaultData);
 
             tag.getAttribute('data-variables-binding').setValue(templateInfo.attributes);
 

@@ -26,6 +26,9 @@ function(Widget, defaultTemplates, navBehavior) {
                 this.initDataBinding();
                 
                 this.bindDomEvents();
+                
+                // clears anything added by the designer
+                $(this.node).empty();
             },
             
             setTemplates: function(templates) {
