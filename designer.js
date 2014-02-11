@@ -5,7 +5,8 @@
     function parseTemplate(rawTemplate, options, defaultData) {
         var attribute = [],
             template = new Template(rawTemplate),
-            variablesList = template.getVariables();
+            variablesList = template.getVariables(),
+            defaultText = '';
 
         variablesList.sort().forEach(function(varName) {
             attribute.push({
@@ -14,9 +15,13 @@
             });
         });
 
+        defaultData.items.forEach(function(item) {
+            defaultText += template.render(item);
+        });
+        
         return {
             attributes: JSON.stringify(attribute),
-            defaultText: template.render(defaultData)
+            defaultText: defaultText
         };
     }
 
