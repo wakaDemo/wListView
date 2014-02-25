@@ -48,7 +48,7 @@
             options = tag.getAttributeOptions('data-variables-binding', 1);
 
         if (options.length === 1 && !options[0].length) {
-            tag.updateTemplate('<li><strong style="color:red;">WARN: no collection set or collection not found.</strong></li>');
+            // tag.updateTemplate('<li><strong style="color:red;">WARN: no collection set or collection not found.</strong></li>');
             append = true;
         }
         
@@ -199,5 +199,27 @@
             // TODO: by default, every attribute is reseted => we have to set each variables to the first attribute found
             $('#waform-form-gridmanager-template-variables').show();
         }
-	});    
+	});
+    
+    wListView.customizeProperty('start', {
+        sourceDisplay: false
+    });
+    
+    wListView.customizeProperty('currentPage', {
+        sourceDisplay: false,
+        display: false
+    });
+    
+    wListView.customizeProperty('pageSize', {
+        sourceDisplay: false
+    });
+    
+    wListView.customizeProperty('navigationMode', {
+        sourceDisplay: false,
+        display: false
+    });
+    
+    wListView.customizeProperty('start', {
+        display: false
+    });
 });

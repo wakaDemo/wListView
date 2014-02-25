@@ -3,7 +3,7 @@ WAF.define('wListView/templates', function() {
         list: [
             {
                 description: 'listView 1',
-                template: '<li>name = {{name}} <br /><strong>(ID = _({{ID}})</strong></li>',
+                template: '<li><strong>(ID = _({{ID}})</strong>name = {{name}}</li>',
             },
             {
                 description: 'listView 2',
@@ -17,7 +17,8 @@ WAF.define('wListView/templates', function() {
         defaultData: {
             items: [
                 { name: "Leon", ID: "190", logo: "/images/avatar1.png", title: 'title 1' },
-                { name: "Marc", ID: "10", logo: "", title: 'title 2' }
+                { name: "Marc", ID: "10", logo: "", title: 'title 2' },
+                { name: "John", ID: "1", logo: "", title: 'This is John!' }
             ]
         }
     };

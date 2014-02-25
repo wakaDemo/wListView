@@ -12,6 +12,8 @@ function(Widget, defaultTemplates, navBehavior) {
             
             /*** prototype ***/
             init: function() {
+                this.navigationMode('loadmore');
+                
                 this._templates = null;
                 
                 this._source = null;
@@ -20,7 +22,7 @@ function(Widget, defaultTemplates, navBehavior) {
                 
                 // startIndex of the rows
                 this._start = 0;
-    
+                
                 this.setTemplates(defaultTemplates);
     
                 this.initDataBinding();
@@ -106,7 +108,7 @@ function(Widget, defaultTemplates, navBehavior) {
                     this.fixAndroid();
                 }
                 
-                jQuery(this.node).on('click', 'li', this._onHold.bind(this));  
+                jQuery(this.node).on(WAF.PLATFORM.isTouch ? 'hold' : 'click', 'li', this._onHold.bind(this));
             },
             
             fixAndroid: function() {
