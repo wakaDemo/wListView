@@ -1,11 +1,11 @@
-/** 
+/**
  * Widget ListView
  *
  */
 .waf-widget.waf-wlistview {
     overflow-x: hidden;
     overflow-y: scroll;
-    
+
     -webkit-overflow-scrolling: touch;
 }
 
@@ -19,19 +19,21 @@
     border-color: inherit;
 }
 
-#cms-body .waf-wlistview li{
+.waf-wlistview li{
     line-height:40px;
     padding:8px;
 }
 
-#cms-body .waf-wlistview li:nth-child(odd){
+.waf-wlistview li:nth-child(odd){
     background-color:#fcfcfc;
-    border-bottom:1px solid #ececec;    
+    border-bottom:1px solid #ececec;
 }
 
-#cms-body .waf-wlistview li strong{
+.waf-wlistview li strong{
     float:right;
 }
+
+
 
 .waf-widget.waf-wlistview li::after {
     content: '';
