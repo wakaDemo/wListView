@@ -12,6 +12,10 @@ WAF.define('wListView/templates', function() {
             {
                 description: 'listView 3',
                 template: '<li>{{title}}</li>'
+            },
+            {
+                description: 'listView 4',
+                template: '<li>{{title}}blah</li>'
             }
         ],
         defaultData: {
