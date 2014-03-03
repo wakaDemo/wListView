@@ -1,35 +1,33 @@
-listView tutorial
+wListView Tutorial
 =================
-This tutorial is intended as a first step for Wakanda listView widget. The following subjects are covered:
+The following subjects are covered in this tutorial:
 
-* **The basics:** how to configure the widget using the studio
-* **Adding/editing Templates** How to add your own templates
+* **The basics:** how to configure the widget using Wakanda Studio
+* **Adding/editing templates** How to add your own template or edit an existing one
 * **Advanced:** how to write your own template with images and optional elements
 
 ## 1. Studio Configuration
 
-The widget can be configured with the following options=
+You can configure the following options for this widget:
 
 ![Studio Configuration](tutorial/img/studioListView.png)
 
 ### 1.1 General
 
-* Template: the display that will be used to render the collection (more on templates in the next sections)
-* PageSize: the number of items to fetch initially (and at each scroll end)
+* **Template**: the template to use to display the data (see below for more information on templates)
+* **PageSize**: the number of items to fetch initially (and at the end of each scroll)
 
 ### 1.2 Template Variables
 
-In this section you map each attribute with a variable name found in the selected template to an attribute of your collection. You may map the same attribute to several variable names.
+In this section, you map each attribute with a variable name found in the selected template to an attribute in your datasource. You may map the same attribute to several variable names.
 
-More on that in the next chapter.
+### 1.3 Collection Property
 
-### 1.3 Collection property
-
-The source property is the datasource that will feed data to your list. Each row in your collection, up to *pageSize* will be rendered using the previously set mapping.
+The source property is the datasource that will supply data to your list. Each row in your datasource's collection, up to *pageSize*, will be rendered using the map that was previously set.
 
 ## 2. Adding/Editing templates
 
-The templates are defined inside the `templates.js` file. By default, the widget is configured with the following templates:
+The templates are defined inside the `templates.js` file. By default, the widget has the following templates:
 
     {
         list: [
@@ -57,37 +55,37 @@ The templates are defined inside the `templates.js` file. By default, the widget
 
 The list is an array of objects with two properties:
 
-* **description**: this is the name of the template that will appear in the **1.2**
-* **template**: this is an html fragment that follows contains special **variables** that will be replaced with the content of the attributes, as set into the *template variables* property.
+* **description**: name of the template that will appear in the **1.2**
+* **template**: an html fragment that contains special **variables** that will be replaced by the contents of the attributes as set in the *template variables* property.
 
 ### 2.1 Adding a template
 
 To add a new template to your widget, simply add a new entry to the list array.
 
-**NOTE:** when modifying the `templates.js` you *must* **reload** your page.
+**NOTE:** When modifying the `templates.js` file, you *must* **reload** your page.
 
 ### 2.1 Editing a template
 
-A template is basically a fragment of html with **special variables** put between two curly braces (*{{var}}*) for each row in the collection, the listview widget will render the html, replacing the variables with the content of the row.
+A template is basically an HTML fragment with **special variables** put between curly braces (*{{var}}*) for each row in the datasource's collection, the wListView widget will render the HTML, replacing the variables with the contents of the row.
 
-The template follows the [HandleBars][handlebars] template which is a powerful JavaScript template system that's already used in a lot of places, included EmberJS.
+The template follows the [HandleBars][handlebars] template, which is a powerful JavaScript template system that's already used in many places, including EmberJS.
 
-Variables are put between two curly braces {{}}. You can use anything with a letter: you cannot use any special character nor space (spaces are reserved for advanced template management).
+Variables are put between curly braces {{}}. You can use anything with a letter; however, you cannot use any special characters or spaces (which are reserved for advanced template management).
 
-Example of template:
+Template example:
 
     {
         description: 'listView 1',
         template: '<li><strong>(ID = _({{ID}})</strong>name = {{name}}</li>',
     }
 
-This template is named "listView1" and jas two variables: *ID* and *name*.
+This template is named "listView1" and has two variables: *ID* and *name*.
 
-If you had a collection with the following rows:
+If you had a datasource with the following rows:
 
     {ID: 0, name: 'Mark'}, {ID:1, name: 'John'}
 
-The template would be rendered like this:
+The data in the template would be rendered like this:
 
     <li><strong>(ID = _(0)</strong>name = Mark</li>
     <li><strong>(ID = _(1)</strong>name = John</li>
@@ -105,13 +103,13 @@ In the following example we will learn how to create more complex templates, lik
 
 ![Studio Configuration](tutorial/img/runtimeEmail.png)
 
-This template could be used in an email app andd has the following features:
+This template could be used in an email app and has the following features:
 
-* line can be selected depending on variable (attribute) value
+* line can be selected depending on a variable (attribute) value
 * line will display the *attachement* icon only if attachment variable is set to true
-* line will use a variable as <img> source tag
-* data will be formatted and not displayed as is, depending on today's date
-* rows that have the favorite attribute set to true will have the "star" icon lighted
+* line will use a variable as an <img> source tag
+* data will be formatted and not displayed as-is, depending on today's date
+* rows that have the favorite attribute set to true will have the "star" icon
 
 As you can see, lots of things can be done with templates, and with very little code.
 
@@ -133,17 +131,17 @@ Here is the template:
 
 While this sounds a little complicated, let's describe each line:
 
-* The special variable `{{#if variable}}...{{/if}}` allows to include text depending on a boolean value. In the above example, if the class *read* will only be added to the line if the *isRead* variable of the row is set to true.
-* The same conditional value is used for the *attachment* attribute
-* You may have noticed that the date format is variable: it actually depends on today's date. It will display *hier* (yesterday) if date was yesterday, only the time if it is today, or the full date. To do that, we have simply
+* The special variable `{{#if variable}}...{{/if}}` allows you to include text depending on a boolean value. In the above example, the *read* class will only be added to the line if the *isRead* variable of the row is set to true.
+* The same conditional value is used for the *attachment* attribute.
+* You may have noticed that the date format is variable: it actually depends on today's date. It will display *hier* (yesterday) if the date was yesterday, only the time if it is today, or the full date. To do that, we have simply
 defined a hook using the `setHook` method:
     wListView = Widget.create('wListView', undefined, {
         init: function() {
             this.setHook('date', function(dateStr) { return 'the date is: ' + str; })
         }
         });
-* The variable can be placed anywhere in the html, including in attribute values: in the above example, the *avatar* variable is used as a source for an image: `<img src="{{avatar}}" />`
+* The variable can be placed anywhere in the HTML, including in attribute values. In the above example, the *avatar* variable is used as a source for an image: `<img src="{{avatar}}" />`
 
-As you can see, it's quite simple to extend templates to have powerful views.
+As you can see, it's quite simple to extend templates to create complex views.
 
 [handlebars]: http://handlebarsjs.com/ "Visit HandleBars website"
