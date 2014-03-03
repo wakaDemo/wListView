@@ -1,7 +1,7 @@
 ## wListView Widget for [Wakanda](http://wakanda.org)
 This widget allows you to display data that comes from a datasource in list format, which is based on a template. You can either use one of the custom templates that come with this widget or create your own. 
 
-The List View widget is especially useful for mobile and tablet applications because of its "infinite scrolling" feature, which automatically loads more data for you as the user gets closer to the end of the list.
+The wListView widget is especially useful for mobile and tablet applications because of its "infinite scrolling" feature, which automatically loads more data for you as the user gets closer to the end of the list.
 
 ### More Information
 For more information on how to install a custom widget, refer to [Installing a Custom Widget](http://doc.wakanda.org/WakandaStudio0/help/Title/en/page3869.html#1027761).
