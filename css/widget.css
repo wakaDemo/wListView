@@ -84,7 +84,6 @@ button::-moz-focus-inner,
 }
 
 .waf-widget.waf-wlistview li p{
-    padding-right:100px;
     position:relative;
     line-height:1.42;
 }
