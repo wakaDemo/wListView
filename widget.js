@@ -11,7 +11,7 @@ function(Widget, defaultTemplates, navBehavior) {
             tagName: 'ul',
             
             /*** prototype ***/
-            init: function() {
+            init: function() {                
                 this.navigationMode('loadmore');
                 
                 this._templates = null;
@@ -46,6 +46,10 @@ function(Widget, defaultTemplates, navBehavior) {
                 
                 // get variable binding and set it
                 this.getVariablesMap();
+                
+                if (this._templates.list[templateNum].className) {
+                    $(this.node).addClass(this._templates.list[templateNum].className);
+                }
             },
     
             getVariablesMap: function() {

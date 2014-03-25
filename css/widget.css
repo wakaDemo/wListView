@@ -24,17 +24,6 @@
     padding:8px;
 }
 
-.waf-wlistview li:nth-child(odd){
-    background-color:#fcfcfc;
-    border-bottom:1px solid #ececec;
-}
-
-.waf-wlistview li strong{
-    float:right;
-}
-
-
-
 .waf-widget.waf-wlistview li::after {
     content: '';
     display: table;
@@ -50,10 +39,7 @@
 .waf-widget.waf-wlistview li .content.waf-state-swyped {
     left: -50%;
 }
-.waf-widget.waf-wlistview li img {
-    display: block;
-    float: left;
-}
+
 .waf-widget.waf-wlistview li h1,
 .waf-widget.waf-wlistview li h2,
 .waf-widget.waf-wlistview li h3,
@@ -117,4 +103,164 @@ button::-moz-focus-inner,
     -webkit-transform: rotate(2turn);
     transform: rotate(2turn);
   }
+}
+
+/* demo templates specifics */
+.waf-wlistview li:nth-child(odd){
+    background-color:#fcfcfc;
+    border-bottom:1px solid #ececec;
+}
+
+.waf-wlistview li strong{
+    float:right;
+}
+
+.waf-widget.waf-wlistview li img {
+    display: block;
+    float: left;
+}
+
+/* emailList template */
+.waf-theme .waf-wlistview li.emailList.selected{
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#e0eaff), to(#e1e4f5));
+  background-image: -webkit-linear-gradient(top, #e0eaff 0%, #e1e4f5 100%);
+  background-image: -moz-linear-gradient(top, #e0eaff 0%, #e1e4f5 100%);
+  background-image: linear-gradient(to bottom, #e0eaff 0%, #e1e4f5 100%);
+}
+
+#waf-body.waf-theme .waf-widget.waf-wlistview li.emailList{
+    border-top-width:0;
+    border-color:#ededed;
+    background-image:none;
+    background-color:#fff;
+    font-weight:bold;
+}
+
+#waf-body.waf-theme .waf-widget.waf-wlistview li.emailList.read{
+    background-color:#eee;
+    border-color:#cdcdcd;
+    font-weight:normal;
+}
+
+.waf-theme .waf-widget.waf-wlistview li date, .waf-widget.waf-wlistview li.emailList .attachment{
+    width:26px;
+    height:26px;
+    display:block;
+    float:right;
+    line-height:24px;
+    margin:auto 2px;
+    font-weight:normal;
+}
+
+.waf-theme .waf-widget.waf-wlistview li.emailList date{
+    width:62px;
+    text-align:right;
+}
+
+.waf-theme .waf-widget.waf-wlistview li.emailList .attachment{
+    background:transparent url(/images/attach.png) no-repeat;
+    background-position:center center;
+    opacity:.3;
+    background-size: 70%;    
+}
+
+.waf-theme .waf-widget.waf-wlistview li.emailList .tag{
+    background-color:#4179f7;
+    color:white;
+    height:12px;
+    text-transform:uppercase;
+    font-size:10px;
+    line-height:12px;
+    padding:0 6px;
+    position:absolute;
+    bottom:0;
+    right:0;
+    text-align:center;
+}
+
+.waf-theme .waf-widget.waf-wlistview li.emailList .star{
+    border: none;
+    padding: 0;
+    width: 44px;
+    height: 44px;
+    position: absolute;
+    right: -8px;
+    background: transparent url(/images/star.png) no-repeat;
+    background-position: 12px -35px;
+    margin: auto 8px;
+    clear: both;
+    top: 23px;
+    background-repeat: no-repeat;
+    z-index:10;
+}
+
+.waf-theme .waf-widget.waf-wlistview li.emailList .stared{
+    background-position: 12px 13px;
+}
+
+.waf-theme .waf-widget.waf-wlistview li.emailList p{
+    padding-right:100px;
+}
+
+/* navList template */
+.waf-theme .waf-widget.waf-wlistview li.navList{
+    background-color:white;
+    background:none;
+}
+
+.waf-theme .waf-widget.waf-wlistview li.navList strong{
+    float:left;
+    font-weight:bold;
+    font-size:14px;
+}
+
+.waf-theme .waf-widget.waf-wlistview li.navList .thumb{
+    width:40px;
+    height:40px;
+    border-radius:40px;
+    -webkit-border-radius:40px;
+}
+
+.waf-theme .waf-widget.waf-wlistview li.navList p{
+    clear:left;
+}
+
+.waf-theme .waf-widget.waf-wlistview li.navList a.nav{
+    font-weight:bold;
+    float:right;
+    color:#bbb;
+    font-size:20px;
+}
+
+/* rssList template */
+.waf-theme .waf-widget.waf-wlistview li.rssList{
+    background-color:white;
+    background:none;
+    margin:6px 0;
+    height:90px;
+}
+
+.waf-theme .waf-widget.waf-wlistview li.rssList .thumb{
+    width:50px;
+    height:50px;
+}
+
+.waf-theme .waf-widget.waf-wlistview li.rssList p{
+    float:left;
+    font-weight:bold;
+    height:54px;
+    text-overflow:none;
+    white-space:normal;
+    line-height:14px;
+}
+
+.waf-theme .waf-widget.waf-wlistview li.rssList .links{
+    margin-top:-11px;
+    color:#aaa;
+    text-align:right;
+    float:right;
+}
+
+.waf-theme .waf-widget.waf-wlistview li.rssList .links a{
+    color:#48bad6;
 }
