@@ -3,9 +3,10 @@ WAF.define(
 [
     'waf-core/widget',
     'wListView/templates',
-    'wListView/source-navigation'
+    'wListView/source-navigation',
+    'wListView/behavior/layout-template',
 ],
-function(Widget, defaultTemplates, navBehavior) {
+function(Widget, defaultTemplates, navBehavior, layoutBehavior) {
     var maxPixels = 120,
         wListView = Widget.create('wListView', undefined, {
             tagName: 'ul',
@@ -185,7 +186,7 @@ function(Widget, defaultTemplates, navBehavior) {
 //		type: 'datasource'
 //	});
 
-    wListView.inherit('waf-behavior/layout/template');
+    wListView.inherit(layoutBehavior);
     
     // navigation source
     wListView.inherit(navBehavior);    
