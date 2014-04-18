@@ -2,7 +2,7 @@
     var studioTemplate = WAF.require('wListView/studio-template'),
         options = [];
 
-    wListView.on('Create', function(tag) {
+    wListView._studioOn('Create', function(tag) {
         var templateNum = tag.getAttribute('data-template').getValue(),
             existingBinding = tag.getAttribute('data-variables-binding').getValue(),
             optionsToUpdate = tag.getAttributeOptions('data-variables-binding', 1),
@@ -14,14 +14,14 @@
             bindingHistory[templateNum] = existingBinding;
             bindingHistory.previousTemplate = templateNum;
         }
-        
+
         tag.getWidget()._bindingHistory = bindingHistory;
-        
+
         // fullsize
         setTimeout(function() {
             tag.fitToParent(true);
         }, 0);
-        
+
         // populate options with the list of templates
         if (!options.length) {
             tag.getWidget()._templates.list.forEach(function(template, i) {
@@ -54,7 +54,7 @@
     });
 
     // remove default data from the final html file
-    wListView.on('Save', function() {
+    wListView._studioOn('Save', function() {
         var node = this && this.getElementNode() || null;
 
         if (node && node._json.childNodes) {
@@ -64,7 +64,7 @@
 
     // add Template list
     //
-    wListView.addAttribute({
+    wListView._addAttribute({
         name: 'data-template',
         type: 'dropdown',
         options: options,
@@ -77,17 +77,17 @@
                 selectedId = this.data.value;
 
             // get previous value ?
-            
+
             // save previous binding
             bindingHistory[oldId] = tag.getAttribute('data-variables-binding').getValue();
-            
+
             studioTemplate.setVariablesBinding(tag, tag.getAttributeOptions('data-variables-binding', 1), bindingHistory[selectedId] || undefined);
-                    
+
             bindingHistory.previousTemplate = selectedId;
         }
     });
 
-    wListView.addAttribute({
+    wListView._addAttribute({
         name: 'data-variables-binding',
         description: 'Template Variables',
         type: 'grid',
@@ -116,7 +116,7 @@
         }
     });
 
-    wListView.addAttribute('data-collection', {
+    wListView._addAttribute('data-collection', {
         typeValue: 'datasource',
         type: 'datasource',
         onchange: function() {
@@ -125,7 +125,7 @@
     });
 
     // since the onchange event is only sent on form change, we have to listen on DSDrop too
-    wListView.on('DSDrop', function(data) {
+    wListView._studioOn('DSDrop', function(data) {
         var collectionName = data.source.getName(),
             tag = this._tag;
 
