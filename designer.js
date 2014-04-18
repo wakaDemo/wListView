@@ -7,15 +7,30 @@
             existingBinding = tag.getAttribute('data-variables-binding').getValue(),
             optionsToUpdate = tag.getAttributeOptions('data-variables-binding', 1),
             templateInfo = studioTemplate.parseTemplate(tag.getWidget()._templates.list[templateNum].template, optionsToUpdate, tag.getWidget()._templates.defaultData),
-            todo = false;
+            todo = false,
+            bindingHistory = {};         // we'll hold binding history there
+
+        if (existingBinding.length) {
+            bindingHistory[templateNum] = existingBinding;
+            bindingHistory.previousTemplate = templateNum;
+        }
+
+        tag.getWidget()._bindingHistory = bindingHistory;
+
+        // fullsize
+        setTimeout(function() {
+            tag.fitToParent(true);
+        }, 0);
 
         // populate options with the list of templates
-        tag.getWidget()._templates.list.forEach(function(template, i) {
-            options.push({
-                key: i.toString(),
-                value: template.description
+        if (!options.length) {
+            tag.getWidget()._templates.list.forEach(function(template, i) {
+                options.push({
+                    key: i.toString(),
+                    value: template.description
+                });
             });
-        });
+        }
 
         // we only need to parse the template on the first creation of the widget (or when the template is changed, but this is done elsewhere)
         try{
@@ -31,7 +46,7 @@
 
         // set default binding
         if (todo === true) {
-            studioTemplate.setVariablesBinding(tag, templateInfo.attributes);
+            studioTemplate.setVariablesBinding(tag, templateInfo.variables);
         }
 
         // set html with some default data
@@ -56,9 +71,19 @@
         defaultValue: '0',
         /**** This will be simplified in the next version ****/
         onchange: function(e) {
-            var tag = this.data.tag;
+            var tag = this.data.tag,
+                bindingHistory = tag.getWidget()._bindingHistory,
+                oldId = bindingHistory.previousTemplate,
+                selectedId = this.data.value;
 
-            studioTemplate.setVariablesBinding(tag, tag.getAttributeOptions('data-variables-binding', 1));
+            // get previous value ?
+
+            // save previous binding
+            bindingHistory[oldId] = tag.getAttribute('data-variables-binding').getValue();
+
+            studioTemplate.setVariablesBinding(tag, tag.getAttributeOptions('data-variables-binding', 1), bindingHistory[selectedId] || undefined);
+
+            bindingHistory.previousTemplate = selectedId;
         }
     });
 

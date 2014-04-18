@@ -16,13 +16,16 @@ WAF.define('wListView/studio-template', function() {
               });
             });
 
-            defaultData.items.forEach(function(item) {
-              defaultText += template.render(item);
-            });
+            for (var i = 0; i < 3; i++) {
+                defaultData.items.forEach(function(item) {
+                  defaultText += template.render(item);
+                });
+            }
 
             return {
               attributes: JSON.stringify(attribute),
-              defaultText: defaultText
+              defaultText: defaultText,
+              variables: variablesList
             };
         },
 
@@ -62,7 +65,7 @@ WAF.define('wListView/studio-template', function() {
                 templateNum = tag.getAttribute('data-template').getValue(),
                 templateInfo = this.parseTemplate(widget._templates.list[templateNum].template, options, widget._templates.defaultData);
 
-            tag.getAttribute('data-variables-binding').setValue(templateInfo.attributes);
+            tag.getAttribute('data-variables-binding').setValue(typeof previousOptions !== 'undefined' ? previousOptions : templateInfo.attributes);
 
             this.setDesignerHtml(tag, templateInfo.defaultText);
 
