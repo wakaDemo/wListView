@@ -1,6 +1,7 @@
 {
     "name": "wListView",
     "author": "Widget Developer",
+    "iconPath": "/icons/wListView.png",
 	"contributors": [
 	    "Developer 1",
 	    "Developer 2"
