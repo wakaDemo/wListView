@@ -7,7 +7,6 @@
 	    "Developer 2"
 	],
     "version": "1.0.0",
-    "iconPath": "/icons/widget.png"
     "copyright": "(c) 2013 Widget Developer",
 	"repository": {
 	    "type": "git",
