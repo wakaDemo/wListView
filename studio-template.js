@@ -60,7 +60,7 @@ WAF.define('wListView/studio-template', function() {
             setTimeout(function() { Designer.tag.refreshPanels(); }, 0);
         },
 
-        setVariablesBinding: function(tag, options) {
+        setVariablesBinding: function(tag, options, previousOptions) {
             var widget = tag.getWidget(),
                 templateNum = tag.getAttribute('data-template').getValue(),
                 templateInfo = this.parseTemplate(widget._templates.list[templateNum].template, options, widget._templates.defaultData);
