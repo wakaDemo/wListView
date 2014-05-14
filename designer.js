@@ -2,7 +2,11 @@
     var studioTemplate = WAF.require('wListView/studio-template'),
         options = [];
 
-    wListView.on('Create', function(tag) {
+    // WAK9 compatibility
+    wListView._studioOn = wListView._studioOn || wListView.on;
+    wListView._addAttribute = wListView._addAttribute || wListView.addAttribute;
+    
+    wListView._studioOn('Create', function(tag) {
         var templateNum = tag.getAttribute('data-template').getValue(),
             existingBinding = tag.getAttribute('data-variables-binding').getValue(),
             optionsToUpdate = tag.getAttributeOptions('data-variables-binding', 1),
@@ -54,7 +58,7 @@
     });
 
     // remove default data from the final html file
-    wListView.on('Save', function() {
+    wListView._studioOn('Save', function() {
         var node = this && this.getElementNode() || null;
 
         if (node && node._json.childNodes) {
@@ -64,7 +68,7 @@
 
     // add Template list
     //
-    wListView.addAttribute({
+    wListView._addAttribute({
         name: 'data-template',
         type: 'dropdown',
         options: options,
@@ -87,7 +91,7 @@
         }
     });
 
-    wListView.addAttribute({
+    wListView._addAttribute({
         name: 'data-variables-binding',
         description: 'Template Variables',
         type: 'grid',
@@ -116,7 +120,7 @@
         }
     });
 
-    wListView.addAttribute('data-collection', {
+    wListView._addAttribute('data-collection', {
         typeValue: 'datasource',
         type: 'datasource',
         onchange: function() {
@@ -125,7 +129,7 @@
     });
 
     // since the onchange event is only sent on form change, we have to listen on DSDrop too
-    wListView.on('DSDrop', function(data) {
+    wListView._studioOn('DSDrop', function(data) {
         var collectionName = data.source.getName(),
             tag = this._tag;
 
