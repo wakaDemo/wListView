@@ -3,16 +3,61 @@ WAF.define(
 [
     'waf-core/widget',
     'wListView/templates',
-    'wListView/source-navigation',
+    'waf-behavior/source-navigation',
     'wListView/behavior/layout-template',
 ],
 function(Widget, defaultTemplates, navBehavior, layoutBehavior) {
     var maxPixels = 120,
+        wListViewV2 = Widget.create('wListView', undefined, {
+            tagName: 'ul',
+            
+            /*** prototype ***/
+            init: function() {
+                console.log('initializing wListViewV2');
+                
+                this.navigationMode('loadmore');
+            },
+            
+            template: Widget.property('template', {
+                templates:[
+                    {
+                        name: 'EMail List',
+                        className: 'emailList',
+                        template: '<li class="emailList{{#if isRead}} read{{/if}}"><date>{{date}}</date>{{#if attachment}}<span class="attachment"></span>{{/if}}<img src="{{avatar}}" /> <h3>{{email}}</h3><button class="star"></button><p>{{text}}</p><span class="tag">{{tag}}</span></li>',
+                    },
+                    {
+                        name: 'Navigation',
+                        className: 'navList',
+                        template: '<li class="navList"><img class="thumb" class="thumb" src="{{avatar}}" /><a class="nav" href="#">&gt;</a><strong>{{name}}</strong><p>{{text}}</p></li>'
+                    },
+                    {
+                        name: 'RSS Feed',
+                        className: 'rssList',
+                        template: '<li class="rssList"><p><img class="thumb" class="thumb" src="{{avatar}}" />{{text}}</p><div class="links"><a href="#">{{name}}</a> | 3 Comments | {{date}}</div></li>'
+                    }                
+                ]
+            }),
+            
+            /****** navigation-source behavior ********/
+            // node where elements will be added
+            getContainer: function() {
+                return this.node;
+            },
+            // return source property
+            getNavigationSource: function() {
+                return this.collection;
+            },
+            // method used to render an element: /* element (datasource), posElement (in collection)  */
+            renderElement: function(element, position) {
+                return this.renderTemplate(element);
+            }            
+        }),
+    
         wListView = Widget.create('wListView', undefined, {
             tagName: 'ul',
             
             /*** prototype ***/
-            init: function() {                
+            init: function() {
                 this.navigationMode('loadmore');
                 
                 this._templates = null;
@@ -193,5 +238,8 @@ function(Widget, defaultTemplates, navBehavior, layoutBehavior) {
     
     /***** /Designer *****/
     
-    return wListView;
+    /**** V2 stuff ****/
+    wListViewV2.inherit(navBehavior);
+    
+    return wListViewV2;
 });
