@@ -14,24 +14,26 @@ function(Widget, defaultTemplates, navBehavior, layoutBehavior) {
             
             /*** prototype ***/
             init: function() {
+                var that = this;
+
+                // source-nagivation configuration
                 this.navigationMode('loadmore');
                 this.linkParentElementToNavigation(this.node);
                 this.linkDatasourcePropertyToNavigation('collection');
                 
                 this.bindDomEvents();
-                // this.initDataBinding();
 
                 this.subscribe('beforeFetch', this.appendLoader.bind(this));
                 
                 this.subscribe('afterFetch', this.removeLoader.bind(this));
                 
                 this.subscribe('fetchFailed', function() {
-                    console.log('**fetchFailed');
+                    that.removeLoader();
                 });
 
                 this._loading = false;
 
-                // paging stuff: should be handled by the paginator
+                // paging stuff
                 this._fetchSize = this.pageSize();
                 this._startPage = 0;
                 
@@ -64,8 +66,12 @@ function(Widget, defaultTemplates, navBehavior, layoutBehavior) {
             onScroll: function(e) {
                 // since onScroll is throttled, we don't access these properties unless enough time passed since last call
                 // cause they are really expensive
+                //
                 // NOTE: maybe height could be only calculated once and only updated on resize/orientationChange ?
                 // this would save one access for each onScroll executed
+                //
+                // FIXEME: if user scrolls too fast and first scroll isn't enough, next scrollEvent can be enough,
+                // but ignored
                 var scrollHeight,
                     scrollTop,
                     height;
@@ -81,14 +87,13 @@ function(Widget, defaultTemplates, navBehavior, layoutBehavior) {
                     // TODO: if we reached the end of data we should not run fetch
                     if ((scrollTop + height) >= (scrollHeight - maxPixels)) {
                         console.log('need to fetch data');
-//                        this._fetchSize += this._pageSize();
-//                        this.getElements(this._startPage, this._fetchSize, function() {
-//                        });
 
-                        // this.pageSize(this.pageSize() + this._fetchSize);
+                        this.pageSize(this.pageSize() + this._fetchSize);
+                    } else {
+                        console.log('did not reach end', (scrollTop + height), (scrollHeight - maxPixels));
                     }
                 } else {
-                    console.log('not enough delay', this._loading);
+                    console.log('not enough delay', this._loading, this._lastScroll);
                 }
             },
             getElements: function(start, size) {
@@ -116,24 +121,17 @@ function(Widget, defaultTemplates, navBehavior, layoutBehavior) {
                 datasourceProperty: 'collection'
             }),
             appendLoader: function() {
-                console.log('**appendLoader');
-                // WORKAROUND for a bug in framework: beforeFetch is event is being sent three times (!)
-                if (this._loading === true) {
-                    return;
-                }
                 this._loading = true;
                 $('<li class="waf-state-loading"><div class="waf-skin-spinner">&nbsp;</div></li>').appendTo(this.node);
             },
     
             removeLoader: function() {
-                console.log('**removeLoader');
                 this._loading = false;
                 $(this.node).find('li.waf-state-loading').remove();
             },
             /****** navigation-source behavior ********/
             // method used to render an element: /* element (datasource), posElement (in collection)  */
             renderElement: function(element, position) {
-                console.log('renderElement');
                 return this.template.render(element);
                 // return this.renderTemplate(element);
             }
@@ -278,7 +276,7 @@ function(Widget, defaultTemplates, navBehavior, layoutBehavior) {
 //
 //                if ((scrollTop + height) >= (scrollHeight - maxPixels)) {
 //                    this.pageSize(this.pageSize() + this._fetchSize);
-//                }upda
+//                }
 //            },
 //
 //            _onHold: function(event) {
