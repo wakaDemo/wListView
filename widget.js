@@ -8,7 +8,7 @@ WAF.define(
 ],
 function(Widget, defaultTemplates, navBehavior, layoutBehavior) {
     var maxPixels = 120,
-        throttleDelay = 100,
+        throttleDelay = 250,
         wListViewV2 = Widget.create('wListView', undefined, {
             tagName: 'ul',
             
@@ -39,17 +39,9 @@ function(Widget, defaultTemplates, navBehavior, layoutBehavior) {
                 
                 this._source = this.collection();
                 
-                this._lastScroll = 0;
-            },
-            initDataBinding: function() {
-                this.template.onDataChange(function(rows) {
-                    console.log('onDataChange');
-                    if (rows && rows.length) {
-                        this.appendString(rows.join(''));
-                    } else  {
-                        console.warn('onDataChange called with no argument or null/undefined');
-                    }
-                });
+                this._scrollInt = 0;
+
+                this._scrolling = false;
             },
             appendString: function(str) {
                 this.removeLoader();
@@ -61,7 +53,18 @@ function(Widget, defaultTemplates, navBehavior, layoutBehavior) {
                 }
             },
             bindDomEvents: function() {
-                jQuery(this.node).scroll(this.onScroll.bind(this));
+                var that = this;
+
+                jQuery(this.node).bind('scroll', function() {
+                    that._scrolling = true;
+                });
+
+//                jQuery(this.node).on('scroll', function() {
+//                    console.log('scroll');
+//                });
+
+                // TODO: only install interval calls after first scroll
+                this._scrollInt = setInterval(this.onScroll.bind(this), throttleDelay);
             },
             onScroll: function(e) {
                 // since onScroll is throttled, we don't access these properties unless enough time passed since last call
@@ -69,31 +72,33 @@ function(Widget, defaultTemplates, navBehavior, layoutBehavior) {
                 //
                 // NOTE: maybe height could be only calculated once and only updated on resize/orientationChange ?
                 // this would save one access for each onScroll executed
-                //
-                // FIXEME: if user scrolls too fast and first scroll isn't enough, next scrollEvent can be enough,
-                // but ignored
-                var scrollHeight,
+                var node = this.node,
+                    scrollHeight,
                     scrollTop,
                     height;
 
-                // throttle scroll event
-                if (!this._loading && (!this._lastScroll || (e.timeStamp - this._lastScroll >= throttleDelay))) {
-                    this._lastScroll = e.timeStamp;
+                if (this._scrolling) {
+                    this._scrolling = false;
 
-                    scrollHeight = this.node.scrollHeight;
-                    scrollTop = this.node.scrollTop;
-                    height = this.node.clientHeight;
+                    // throttle scroll event
+                    if (!this._loading) {
+                        scrollHeight = node.scrollHeight;
+                        scrollTop = node.scrollTop;
+                        height = node.clientHeight;
 
-                    // TODO: if we reached the end of data we should not run fetch
-                    if ((scrollTop + height) >= (scrollHeight - maxPixels)) {
-                        console.log('need to fetch data');
+                        // TODO: if we reached the end of data we should not run fetch
+                        if ((scrollTop + height) >= (scrollHeight - maxPixels)) {
+                            console.log('need to fetch data');
 
-                        this.pageSize(this.pageSize() + this._fetchSize);
+                            this.pageSize(this.pageSize() + this._fetchSize);
+                        } else {
+                            console.log('did not reach end', (scrollTop + height), (scrollHeight - maxPixels));
+                        }
+
+                        // TODO: prevent more scrolling by removing event ?
                     } else {
-                        console.log('did not reach end', (scrollTop + height), (scrollHeight - maxPixels));
+                        console.log('onScroll() => already loading');
                     }
-                } else {
-                    console.log('not enough delay', this._loading, this._lastScroll);
                 }
             },
             getElements: function(start, size) {
