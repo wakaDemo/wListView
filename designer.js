@@ -132,6 +132,13 @@
 //            studioTemplate.DSChanged(tag, collectionName);
 //    });
 
+    wListView._studioOn('Create', function(tag) {
+        // fullsize hack
+        setTimeout(function() {
+            tag.fitToParent(true);
+        }, 0);
+    });
+
     // events
     wListView.addEvent({
         'name': 'rowHold',

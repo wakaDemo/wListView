@@ -29,6 +29,8 @@ function(Widget, defaultTemplates, navBehavior, layoutBehavior) {
                     console.log('**fetchFailed');
                 });
 
+                this._loading = false;
+
                 // paging stuff: should be handled by the paginator
                 this._fetchSize = this.pageSize();
                 this._startPage = 0;
@@ -36,13 +38,10 @@ function(Widget, defaultTemplates, navBehavior, layoutBehavior) {
                 this._source = this.collection();
                 
                 this._lastScroll = 0;
-                
-                if (!window.Designer) {
-                    this.appendLoader();
-                }
             },
             initDataBinding: function() {
                 this.template.onDataChange(function(rows) {
+                    console.log('onDataChange');
                     if (rows && rows.length) {
                         this.appendString(rows.join(''));
                     } else  {
@@ -89,12 +88,11 @@ function(Widget, defaultTemplates, navBehavior, layoutBehavior) {
                         // this.pageSize(this.pageSize() + this._fetchSize);
                     }
                 } else {
-                    console.log('not enough delay');
+                    console.log('not enough delay', this._loading);
                 }
             },
             getElements: function(start, size) {
                 this.appendLoader();
-                this.source
             },
             collection: Widget.property({
                 type: 'datasource'
@@ -119,6 +117,10 @@ function(Widget, defaultTemplates, navBehavior, layoutBehavior) {
             }),
             appendLoader: function() {
                 console.log('**appendLoader');
+                // WORKAROUND for a bug in framework: beforeFetch is event is being sent three times (!)
+                if (this._loading === true) {
+                    return;
+                }
                 this._loading = true;
                 $('<li class="waf-state-loading"><div class="waf-skin-spinner">&nbsp;</div></li>').appendTo(this.node);
             },
@@ -129,16 +131,6 @@ function(Widget, defaultTemplates, navBehavior, layoutBehavior) {
                 $(this.node).find('li.waf-state-loading').remove();
             },
             /****** navigation-source behavior ********/
-            // node where elements will be added
-            getContainer: function() {
-                console.log('getContainer');
-                return this.node;
-            },
-            // return source property
-            getNavigationSource: function() {
-                console.log('getNavigationSource');
-                return this.collection;
-            },
             // method used to render an element: /* element (datasource), posElement (in collection)  */
             renderElement: function(element, position) {
                 console.log('renderElement');

@@ -121,6 +121,11 @@ button::-moz-focus-inner,
 }
 
 /* emailList template */
+#waf-body.waf-theme .waf-widget.waf-wlistview li.emailList img{
+    max-width:60px;
+    padding:10px;
+}
+
 .waf-theme .waf-wlistview li.emailList.selected{
   background-image: -webkit-gradient(linear, left top, left bottom, from(#e0eaff), to(#e1e4f5));
   background-image: -webkit-linear-gradient(top, #e0eaff 0%, #e1e4f5 100%);
