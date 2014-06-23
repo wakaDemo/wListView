@@ -17,7 +17,12 @@ function(Widget, defaultTemplates, navBehavior, layoutBehavior) {
                 var that = this;
 
                 // hack to remove any fake data from designer
-                this.node.innerHTML = '';
+                if (!window.studio) {
+                    this.node.innerHTML = '';
+                } else {
+                    // TODO: force render of defaultData since onChange isn't called on drop of the widget
+                    this.node.innerHTML = this.template.render(this.template.defaultData.items[0]);
+                }
 
                 // source-nagivation configuration
                 this.navigationMode('loadmore');
