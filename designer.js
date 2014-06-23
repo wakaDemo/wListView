@@ -135,7 +135,9 @@
     wListView._studioOn('Create', function(tag) {
         // fullsize hack
         setTimeout(function() {
+            Designer.env.enableModificationNotification = false;
             tag.fitToParent(true);
+            Designer.env.enableModificationNotification = true;
         }, 0);
     });
 
