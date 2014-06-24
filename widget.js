@@ -3,10 +3,9 @@ WAF.define(
 [
     'waf-core/widget',
     'wListView/templates',
-    'waf-behavior/source-navigation',
-    'wListView/behavior/layout-template',
+    'waf-behavior/source-navigation'
 ],
-function(Widget, defaultTemplates, navBehavior, layoutBehavior) {
+function(Widget, defaultTemplates, navBehavior) {
     var maxPixels = 120,
         throttleDelay = 250,
         wListViewV2 = Widget.create('wListView', undefined, {
@@ -20,7 +19,7 @@ function(Widget, defaultTemplates, navBehavior, layoutBehavior) {
                 if (!window.studio) {
                     this.node.innerHTML = '';
                 } else {
-                    force render of defaultData since onChange isn't called on drop of the widget
+                    // force render of defaultData since onChange isn't called on drop of the widget
                     this.node.innerHTML = this.template.render(this.template.defaultData.items[0]);
                 }
 
