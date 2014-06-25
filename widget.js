@@ -15,12 +15,15 @@ function(Widget, defaultTemplates, navBehavior) {
             init: function() {
                 var that = this;
 
-                // hack to remove any fake data from designer
-                if (!window.studio) {
-                    this.node.innerHTML = '';
-                } else {
-                    // force render of defaultData since onChange isn't called on drop of the widget
-                    this.node.innerHTML = this.template.render(this.template.defaultData.items[0]);
+                // force render of defaultData since onChange isn't called on drop of the widget inside studio
+                if (window.studio) {
+                    var str = '';
+                    
+                    for (var i = 0; i < 3; i++) {
+                        str += this.template.render(this.template.defaultData.items[0]);
+                    }
+                    
+                    this.node.innerHTML = str;
                 }
 
                 // source-nagivation configuration
@@ -117,15 +120,15 @@ function(Widget, defaultTemplates, navBehavior) {
                 templates: [
                     {
                         name: 'EMail List',
-                        template: '<li class="emailList{{#if isRead}} read{{/if}}"><date>{{date}}</date>{{#if attachment}}<span class="attachment"></span>{{/if}}<img src="{{avatar}}" /> <h3>{{email}}</h3><button class="star"></button><p>{{text}}</p><span class="tag">{{tag}}</span></li>',
+                        template: '<li class="waf-studio-donotsave emailList{{#if isRead}} read{{/if}}"><date>{{date}}</date>{{#if attachment}}<span class="attachment"></span>{{/if}}<img src="{{avatar}}" /> <h3>{{email}}</h3><button class="star"></button><p>{{text}}</p><span class="tag">{{tag}}</span></li>',
                     },
                     {
                         name: 'Navigation',
-                        template: '<li class="navList"><img class="thumb" class="thumb" src="{{avatar}}" /><a class="nav" href="#">&gt;</a><strong>{{name}}</strong><p>{{text}}</p></li>'
+                        template: '<li class="waf-studio-donotsave navList"><img class="thumb" class="thumb" src="{{avatar}}" /><a class="nav" href="#">&gt;</a><strong>{{name}}</strong><p>{{text}}</p></li>'
                     },
                     {
                         name: 'RSS Feed',
-                        template: '<li class="rssList"><p><img class="thumb" class="thumb" src="{{avatar}}" />{{text}}</p><div class="links"><a href="#">{{name}}</a> | 3 Comments | {{date}}</div></li>'
+                        template: '<li class="waf-studio-donotsave rssList"><p><img class="thumb" class="thumb" src="{{avatar}}" />{{text}}</p><div class="links"><a href="#">{{name}}</a> | 3 Comments | {{date}}</div></li>'
                     }
                 ],
                 defaultData: {

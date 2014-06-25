@@ -133,12 +133,29 @@
 //    });
 
     wListView._studioOn('Create', function(tag) {
+        var widget = tag.getWidget(),
+            template = widget.template;
+        
         // fullsize hack
         setTimeout(function() {
             Designer.env.enableModificationNotification = false;
             tag.fitToParent(true);
             Designer.env.enableModificationNotification = true;
         }, 0);
+        
+        widget.template.onChange(function() {
+            var elt = $(widget.node),
+                str = '',
+                i = 0;
+            
+            for (i = 0; i < 3; i++) {
+                template.defaultData.items.forEach(function(item) {
+                    str += template.render(item);
+                });
+            }
+            
+            elt.html(str);
+        });
     });
 
     // events
