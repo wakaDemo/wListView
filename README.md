@@ -133,13 +133,6 @@ Let's go over each line:
 
 * The special variable `{{#if variable}}...{{/if}}` allows you to include text depending on a boolean value. In the above example, the *read* CSS class will  be added to the row only if the *isRead* variable is set to true.
 * The same conditional test is used for the *attachment* attribute.
-* You may have noticed that the date format is variable: it actually depends on today's date. It displays *hier* (yesterday) if the date was yesterday, only the time if it is today, or the full date. To do that, we have simply
-defined a hook using the `setHook` method:
-    wListView = Widget.create('wListView', undefined, {
-        init: function() {
-            this.setHook('date', function(dateStr) { return 'the date is: ' + str; })
-        }
-        });
 * Variables can be placed anywhere in the HTML template, including in attribute values. 
 The *avatar* variable is used as the source for the image tag: `<img src="{{avatar}}" />`
 
