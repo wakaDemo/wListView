@@ -1,6 +1,12 @@
 (function(wListView) {
+    /*jshint multistr: true, devel: true*/
+    "use strict";
     var studioTemplate = WAF.require('wListView/studio-template'),
         options = [];
+
+    // Keep WAK8 compatibility
+    wListView._studioOn = wListView._studioOn || wListView.on;
+    wListView._addAttribute = wListView._addAttribute || wListView.addAttribute;
 
     wListView._studioOn('Create', function(tag) {
         var templateNum = tag.getAttribute('data-template').getValue(),
@@ -129,7 +135,7 @@
         var collectionName = data.source.getName(),
             tag = this._tag;
 
-            studioTemplate.DSChanged(tag, collectionName);
+        studioTemplate.DSChanged(tag, collectionName);
     });
 
     // events

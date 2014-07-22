@@ -35,7 +35,7 @@ function(Behavior, Event, WakError, Template) {
             var hooks = this._hooks,
                 hook = null,
                 that = this;
-            
+
             // when running inside the Designer we have no datasources
             if (typeof Designer === 'undefined') {
                 variables.forEach(function(elt) {
@@ -51,14 +51,12 @@ function(Behavior, Event, WakError, Template) {
             }
         },
         renderTemplate: function(data, appendContent) {
-            var convertedData = [];
-            
             if (appendContent === true) {
                 this._templateCache += this._template.render(data);
             } else {
                 this._templateCache = this._template.render(data);
             }
-            
+
             return this._templateCache;
         },
         updateDom: function(appendContent) {
