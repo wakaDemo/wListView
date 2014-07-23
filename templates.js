@@ -1,5 +1,5 @@
-WAF.define('wListView/templates', function() {
-    /*jshint multistr: true */  
+﻿WAF.define('wListView/templates', function() {
+    /*jshint multistr: true */
     "use strict";
     return {
         list: [
@@ -11,11 +11,11 @@ WAF.define('wListView/templates', function() {
                                     {{date}}\
                                 </date>\
                                 {{#if attachment}}\
-                                    <span class="attachment"></span>\
+                                    <span class="attachment">⚑</span>\
                                 {{/if}}\
                                 <img src="{{avatar}}" />\
                                 <h3>{{email}}</h3>\
-                                <button class="star"></button>\
+                                <button class="star">★</button>\
                                 <p>\
                                     {{text}}\
                                 </p>\

@@ -15,7 +15,7 @@ function(Behavior, Event, WakError, Template) {
     WAF.extend(tplBehavior.prototype, {
         _initBehavior: function() {
             this._hooks = {};
-            this.mapping = {};
+            this.mapping = null;
         },
         setTemplate: function(handlebarTpl) {
             if (typeof handlebarTpl !== undefined) {
@@ -36,25 +36,23 @@ function(Behavior, Event, WakError, Template) {
                 hook = null,
                 that = this;
 
-            // when running inside the Designer we have no datasources
-            if (typeof Designer === 'undefined') {
-                variables.forEach(function(elt) {
-                    that._template.setHelper(elt.variable, function() {
-                        hook = hooks[elt.variable];
-                        if (hook) {
-                            return hook(this[elt.attribute]);
-                        } else {
-                            return this[elt.attribute];
-                        }
-                    });
-                });
-            }
+            this.mapping = variables;
         },
         renderTemplate: function(data, appendContent) {
+            var mappedData = {};
+
+            this.mapping.forEach(function(map) {
+                if (data[map.attribute] && data[map.attribute].__deferred && data[map.attribute].__deferred.image === true) {
+                    mappedData[map.variable] = data[map.attribute].__deferred.uri;
+                } else {
+                    mappedData[map.variable] = data[map.attribute];
+                }
+            });
+
             if (appendContent === true) {
-                this._templateCache += this._template.render(data);
+                this._templateCache += this._template.render(mappedData);
             } else {
-                this._templateCache = this._template.render(data);
+                this._templateCache = this._template.render(mappedData);
             }
 
             return this._templateCache;

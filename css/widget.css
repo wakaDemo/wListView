@@ -164,7 +164,7 @@ button::-moz-focus-inner,
 }
 
 .waf-theme .waf-widget.waf-wlistview li.emailList date{
-    width:62px;
+    width:auto;
     text-align:right;
 }
 
@@ -185,17 +185,16 @@ button::-moz-focus-inner,
 .waf-theme .waf-widget.waf-wlistview li.emailList .star{
     border: none;
     padding: 0;
-    width: 30px;
     height: 30px;
     position: absolute;
     right: -8px;
-	font-size:24px;
+	font-size:22px;
 	line-height:100%;
 	color:#FFDF0D;
 	background-color:transparent;
     margin: auto 8px;
     clear: both;
-    top: 20px;
+    top: 28px;
     z-index:10;
 }
 
