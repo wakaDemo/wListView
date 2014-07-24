@@ -4,7 +4,7 @@ WAF.define(
     'waf-core/behavior',
     'waf-core/event',
     'waf-core/error',
-    'waf-core/template'
+    'wListView/behavior/template'
 ],
 function(Behavior, Event, WakError, Template) {
     "use strict";

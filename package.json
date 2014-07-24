@@ -17,6 +17,7 @@
 	"license": "MIT",
     "loadDependencies": [
     	{"id": "Widget_V2"},
+        {"id": "wListView/behavior/template.js", "version": "1.0.0", "path": "WIDGETS_CUSTOM"},
         {"id": "wListView/behavior/layout-template.js", "version": "1.0.0", "path": "WIDGETS_CUSTOM"},
         {"id": "wListView/studio-template.js", "version": "1.0.0", "path": "WIDGETS_CUSTOM"},
         {"id": "wListView/source-navigation.js", "version": "1.0.0", "path": "WIDGETS_CUSTOM"},
