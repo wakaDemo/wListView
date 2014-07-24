@@ -1,9 +1,8 @@
 /* This file contains helper methods that won't be needed in future version of WAF */
-WAF.define('wListView/studio-template', function() {
+WAF.define('wListView/studio-template', ['wListView/behavior/template'], function(Template) {
     /*global Designer*/
     "use strict";
-    var Template = WAF.require('waf-core/template');
-
+    
     return {
         parseTemplate: function(rawTemplate, options, defaultData) {
             var attribute = [],

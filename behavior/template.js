@@ -1,5 +1,6 @@
 WAF.define('wListView/behavior/template', function() {
-
+	/*globals Handlebars*/
+	"use strict";
 	var Template = function(html) {
 		this.setHtml(html || 'no html specified');
 	};
@@ -15,7 +16,7 @@ WAF.define('wListView/behavior/template', function() {
                     getVariables(node.inverse.statements, variables);
                 }
 
-                // add {{#if foo}} as variables too
+                // add {{#if foo}} as variable too
                 if (node.mustache && node.mustache.params.length) {
                     node.mustache.params.forEach(function(node) {
                         if (node.string && variables.indexOf(node.string) === -1) {
@@ -30,7 +31,7 @@ WAF.define('wListView/behavior/template', function() {
 	Template.prototype = {
 		setHtml: function(html) {
 			this.html = html;
-            this.template = Handlebars.compile(html);
+			this.template = Handlebars.compile(html);
 		},
 		// very simple render method for now, simply replaces elements
 		render: function(data, domNode) {
