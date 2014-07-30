@@ -17,9 +17,6 @@
 	"license": "MIT",
     "loadDependencies": [
     	{"id": "Widget_V2"},
-        {"id": "wListView/behavior/layout-template.js", "version": "1.0.0", "path": "WIDGETS_CUSTOM"},
-        {"id": "wListView/studio-template.js", "version": "1.0.0", "path": "WIDGETS_CUSTOM"},
-        {"id": "wListView/templates.js", "version": "1.0.0", "path": "WIDGETS_CUSTOM"},
         {"id": "wListView/widget.js", "version": "1.0.0", "path": "WIDGETS_CUSTOM"},
         {"id": "wListView/css/widget.css", "version": "1.0.0", "path": "WIDGETS_CUSTOM"},
         {"id": "wListView/designer.js", "studioOnly": true, "version": "1.0.0", "path": "WIDGETS_CUSTOM"}

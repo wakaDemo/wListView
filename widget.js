@@ -2,15 +2,14 @@ WAF.define(
 'wListView',
 [
     'waf-core/widget',
-    'wListView/templates',
     'waf-behavior/source-navigation'
 ],
-function(Widget, defaultTemplates, navBehavior) {
+function(Widget, navBehavior) {
     var maxPixels = 120,
         throttleDelay = 250,
         wListViewV2 = Widget.create('wListView', undefined, {
             tagName: 'ul',
-            
+
             /*** prototype ***/
             init: function() {
                 var that = this;
@@ -18,11 +17,11 @@ function(Widget, defaultTemplates, navBehavior) {
                 // force render of defaultData since onChange isn't called on drop of the widget inside studio
                 if (window.studio) {
                     var str = '';
-                    
+
                     for (var i = 0; i < 3; i++) {
                         str += this.template.render(this.template.defaultData.items[0]);
                     }
-                    
+
                     this.node.innerHTML = str;
                 }
 
@@ -30,13 +29,13 @@ function(Widget, defaultTemplates, navBehavior) {
                 this.navigationMode('loadmore');
                 this.linkParentElementToNavigation(this.node);
                 this.linkDatasourcePropertyToNavigation('collection');
-                
+
                 this.bindDomEvents();
 
                 this.subscribe('beforeFetch', this.appendLoader.bind(this));
-                
+
                 this.subscribe('afterFetch', this.removeLoader.bind(this));
-                
+
                 this.subscribe('fetchFailed', function() {
                     that.removeLoader();
                 });
@@ -46,9 +45,9 @@ function(Widget, defaultTemplates, navBehavior) {
                 // paging stuff
                 this._fetchSize = this.pageSize();
                 this._startPage = 0;
-                
+
                 this._source = this.collection();
-                
+
                 this._scrollInt = 0;
 
                 this._scrolling = false;
@@ -152,7 +151,7 @@ function(Widget, defaultTemplates, navBehavior) {
                 this._loading = true;
                 $('<li class="waf-state-loading"><div class="waf-skin-spinner">&nbsp;</div></li>').appendTo(this.node);
             },
-    
+
             removeLoader: function() {
                 this._loading = false;
                 $(this.node).find('li.waf-state-loading').remove();
@@ -164,9 +163,9 @@ function(Widget, defaultTemplates, navBehavior) {
             }
         }
     );
-    
-    
+
+
     wListViewV2.inherit(navBehavior);
-    
+
     return wListViewV2;
 });
