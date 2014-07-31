@@ -1,4 +1,4 @@
-WAF.define(
+﻿WAF.define(
 'wListView',
 [
     'waf-core/widget',
@@ -119,15 +119,37 @@ function(Widget, navBehavior) {
                 templates: [
                     {
                         name: 'EMail List',
-                        template: '<li class="waf-studio-donotsave emailList{{#if isRead}} read{{/if}}"><date>{{date}}</date>{{#if attachment}}<span class="attachment"></span>{{/if}}<img src="{{avatar}}" /> <h3>{{email}}</h3><button class="star"></button><p>{{text}}</p><span class="tag">{{tag}}</span></li>',
+                        template: '<li class="waf-studio-donotsave emailList{{#if isRead}} read{{/if}}">\
+									<date>{{date}}</date>\
+									{{#if attachment}}<span class="attachment">⚑</span>{{/if}}\
+									<img src="{{avatar}}" />\
+									<h3>{{email}}</h3>\
+									<button class="star">★</button>\
+									<p>{{text}}</p>\
+									<span class="tag">{{tag}}</span>\
+								  </li>',
                     },
                     {
                         name: 'Navigation',
-                        template: '<li class="waf-studio-donotsave navList"><img class="thumb" class="thumb" src="{{avatar}}" /><a class="nav" href="#">&gt;</a><strong>{{name}}</strong><p>{{text}}</p></li>'
+                        template: '<li class="waf-studio-donotsave navList">\
+									<img class="thumb" class="thumb" src="{{avatar}}" />\
+									<a class="nav" href="#">&gt;</a>\
+									<strong>{{name}}</strong>\
+									<p>{{text}}</p>\
+									</li>'
                     },
                     {
                         name: 'RSS Feed',
-                        template: '<li class="waf-studio-donotsave rssList"><p><img class="thumb" class="thumb" src="{{avatar}}" />{{text}}</p><div class="links"><a href="#">{{name}}</a> | 3 Comments | {{date}}</div></li>'
+                        template: '<li class="waf-studio-donotsave rssList">\
+							<p>\
+								<img class="thumb" class="thumb" src="{{avatar}}" />\
+								{{text}}\
+							</p>\
+							<div class="links">\
+								<a href="#">{{name}}</a>\
+								| 3 Comments | {{date}}\
+							</div>\
+						</li>'
                     }
                 ],
                 defaultData: {

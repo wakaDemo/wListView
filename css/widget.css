@@ -158,15 +158,14 @@ button::-moz-focus-inner,
 }
 
 .waf-theme .waf-widget.waf-wlistview li.emailList date{
-    width:62px;
+    width:auto;
     text-align:right;
 }
 
 .waf-theme .waf-widget.waf-wlistview li.emailList .attachment{
-    background:transparent url(/images/attach.png) no-repeat;
-    background-position:center center;
-    opacity:.3;
-    background-size: 70%;    
+	color:#D8451E;
+	font-size:20px;
+	text-align:center;
 }
 
 .waf-theme .waf-widget.waf-wlistview li.emailList .tag{
@@ -186,21 +185,17 @@ button::-moz-focus-inner,
 .waf-theme .waf-widget.waf-wlistview li.emailList .star{
     border: none;
     padding: 0;
-    width: 44px;
-    height: 44px;
+    height: 30px;
     position: absolute;
     right: -8px;
-    background: transparent url(/images/star.png) no-repeat;
-    background-position: 12px -35px;
+	font-size:22px;
+	line-height:100%;
+	color:#FFDF0D;
+	background-color:transparent;
     margin: auto 8px;
     clear: both;
-    top: 23px;
-    background-repeat: no-repeat;
+    top: 15px;
     z-index:10;
-}
-
-.waf-theme .waf-widget.waf-wlistview li.emailList .stared{
-    background-position: 12px 13px;
 }
 
 .waf-theme .waf-widget.waf-wlistview li.emailList p{
