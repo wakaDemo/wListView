@@ -2,7 +2,7 @@
 WAF.define('wListView/studio-template', ['wListView/behavior/template'], function(Template) {
     /*global Designer*/
     "use strict";
-    
+
     return {
         parseTemplate: function(rawTemplate, options, defaultData) {
             var attribute = [],
@@ -39,7 +39,8 @@ WAF.define('wListView/studio-template', ['wListView/behavior/template'], functio
                 options.length = 0;
 
                 ds.getAttributes().forEach(function(attribute) {
-                    if (attribute.scope === 'public') {
+                    // seems like local datasources do not have scope defined
+                    if (attribute.scope === 'public' || !attribute.scope) {
                         options.push(attribute.name);
                     }
                 });
