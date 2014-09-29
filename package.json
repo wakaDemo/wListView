@@ -1,22 +1,18 @@
 {
     "name": "wListView",
-    "author": "Widget Developer",
+    "author": "4D",
     "iconPath": "/icons/wListView.png",
-	"contributors": [
-	    "Developer 1",
-	    "Developer 2"
-	],
-    "version": "1.0.0",
-    "copyright": "(c) 2013 Widget Developer",
-	"repository": {
-	    "type": "git",
-	    "url": "https://github.com/developer/Widget.git"
-	},
-	"keywords": ["wakanda", "widget"],
-	"engines": {"wakanda" : ">= 6"},
-	"license": "MIT",
+    "version": "1.0.1",
+    "copyright": "(c) 2013 4D",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Wakanda/wListView.git"
+    },
+    "keywords": ["wakanda", "widget"],
+    "engines": {"wakanda" : ">= 9"},
+    "license": "MIT",
     "loadDependencies": [
-    	{"id": "Widget_V2"},
+        {"id": "Widget_V2"},
         {"id": "wListView/behavior/template.js", "version": "1.0.0", "path": "WIDGETS_CUSTOM"},
         {"id": "wListView/behavior/layout-template.js", "version": "1.0.0", "path": "WIDGETS_CUSTOM"},
         {"id": "wListView/studio-template.js", "version": "1.0.0", "path": "WIDGETS_CUSTOM"},
