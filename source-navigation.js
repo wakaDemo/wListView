@@ -176,7 +176,11 @@ WAF.define('wListView/source-navigation', function() {
 				
 		renderElements: function() {
 			this.generateElements(this.start(), this.pageSize(), function(fragment) {
-				this._getContainer().insertAdjacentHTML('beforeend', fragment);
+				if(this.start() === 0) {
+					this._getContainer().innerHTML = fragment;
+				} else {
+					this._getContainer().insertAdjacentHTML('beforeend', fragment);
+				}
 			}.bind(this));
 		},
 		
