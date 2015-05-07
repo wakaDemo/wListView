@@ -1,270 +1,352 @@
-/**
- * Widget ListView
- *
- */
-.waf-widget.waf-wlistview {
+.waf-listview2 {
     overflow-x: hidden;
     overflow-y: scroll;
-
     -webkit-overflow-scrolling: touch;
+    border: 1px solid;
+    padding:0;
 }
 
-.waf-widget.waf-wlistview li {
+.waf-listview2 ul {
     position: relative;
-    width:  100%;
-
-    overflow: hidden;
-
-    border-style: inherit;
-    border-color: inherit;
+    list-style-type: none;
+    padding:0;
 }
 
-.waf-wlistview li{
-    line-height:40px;
-    padding:8px;
-}
-
-.waf-widget.waf-wlistview li::after {
-    content: '';
-    display: table;
-    clear: both;
-}
-.waf-widget.waf-wlistview li .content {
+.waf-listview2 ul li {
     position: absolute;
-    top:    0;
-    left:   0;
-    width:  100%;
-    height: 100%;
-}
-.waf-widget.waf-wlistview li .content.waf-state-swyped {
-    left: -50%;
+    cursor: pointer;
+    height: 30px;
+    line-height: 2rem;
+    width: 100%;
+    margin: 0;
+    padding-left: .7rem !important;
 }
 
-.waf-widget.waf-wlistview li h1,
-.waf-widget.waf-wlistview li h2,
-.waf-widget.waf-wlistview li h3,
-.waf-widget.waf-wlistview li h4,
-.waf-widget.waf-wlistview li h5,
-.waf-widget.waf-wlistview li h6,
-.waf-widget.waf-wlistview li p {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-
+.waf-listview2 ul li p {
+    vertical-align:middle;
     margin: 0;
 }
 
-.waf-wlistview li{
-    -webkit-transition-property:-webkit-transform;
-    -webkit-transition-duration:.5s;
+.waf-listview2 ul li p img {
+    vertical-align:middle;
+    margin-right:.7rem;
+    max-height:20px;
 }
 
-button::-moz-focus-inner,
-    input::-moz-focus-inner {
-    border: 0;
-    padding: 0;
+.waf-listview2 ul li.waf-state-selected {
+    background: #A9E2F3;
 }
 
-#waf-body.waf-theme .waf-widget.waf-wlistview{
-    border-radius:0;
+/* DEFAULT */
+.waf-theme.default .waf-listview2 {
+    background-color: #fff;
+    border-color: #dcdcdc;
 }
 
-.waf-widget.waf-wlistview li p{
-    position:relative;
-    line-height:1.42;
+.waf-theme.default .waf-listview2 ul li {
+    border-bottom: 1px solid #dcdcdc;
 }
 
-/* Loader */
-.waf-state-loading .waf-skin-spinner {
-  margin: auto;
-  position: relative;
-  overflow: hidden;
-  width: 3em;
-  height: 3em;
-  font-size: 14px;
-  -webkit-animation: waf-kf-spin 1.3s infinite alternate;
-  animation: waf-kf-spin 1.3s infinite alternate;
-  border-width: 0.3em;
-  border-style: solid;
-  border-color: #48bad6 #48bad6 rgba(0, 0, 0, 0.05) rgba(0, 0, 0, 0.05);
-  border-radius: 1000px;
-
+.waf-theme.default .waf-listview2 ul li:hover {
+    background: #f5f5f5;
 }
 
-@-webkit-keyframes waf-kf-spin {
-  to {
-    -webkit-transform: rotate(2turn);
-    transform: rotate(2turn);
-  }
+/* LILAC */
+.waf-theme.lilac .waf-listview2 {
+    color: #4f5057;
+    border-color: #777985;
+    background: #e8eaf6; /* Old browsers */
+    background: -moz-linear-gradient(top,  #e8eaf6 0%, #d9dcf1 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e8eaf6), color-stop(100%,#d9dcf1)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #e8eaf6 0%,#d9dcf1 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #e8eaf6 0%,#d9dcf1 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #e8eaf6 0%,#d9dcf1 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #e8eaf6 0%,#d9dcf1 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8eaf6', endColorstr='#d9dcf1',GradientType=0 ); /* IE6-9 */
 }
 
-@keyframes waf-kf-spin {
-  to {
-    -webkit-transform: rotate(2turn);
-    transform: rotate(2turn);
-  }
+.waf-theme.lilac .waf-listview2 ul li {
+    border-bottom: 1px solid #ced1e5;
 }
 
-/* demo templates specifics */
-.waf-wlistview li:nth-child(odd){
-    background-color:#fcfcfc;
-    border-bottom:1px solid #ececec;
+.waf-theme.lilac .waf-listview2 ul li:hover {
+    color: #4c4d54;
+    text-shadow: 1px 1px 0px #fedda3;
+    background: #ffcf7b; /* Old browsers */
+    background: -moz-linear-gradient(top,  #ffcf7b 0%, #ffb22b 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffcf7b), color-stop(100%,#ffb22b)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #ffcf7b 0%,#ffb22b 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #ffcf7b 0%,#ffb22b 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #ffcf7b 0%,#ffb22b 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #ffcf7b 0%,#ffb22b 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffcf7b', endColorstr='#ffb22b',GradientType=0 ); /* IE6-9 */
 }
 
-.waf-wlistview li strong{
-    float:right;
+.waf-theme.lilac .waf-listview2 ul li.waf-state-selected {
+    background: #ffdea3;
 }
 
-.waf-widget.waf-wlistview li img {
-    display: block;
-    float: left;
+/* METAL */
+.waf-theme.metal .waf-listview2 {
+    color: #131313;
+    border-color: #999999;
+    background-color: #fff;
+    -moz-box-shadow: inset 0px 0px 5px 0px #757575;
+    -webkit-box-shadow: inset 0px 0px 5px 0px #757575;
+    -o-box-shadow: inset 0px 0px 5px 0px #757575;
+    box-shadow: inset 0px 0px 5px 0px #757575;
+    filter:progid:DXImageTransform.Microsoft.Shadow(color=#757575, Direction=NaN, Strength=5);
+}
+
+.waf-theme.metal .waf-listview2 ul li {
+    border-bottom: 1px solid #dcdcdc;
+}
+
+.waf-theme.metal .waf-listview2 ul li:hover {
+    background-color: #e5feff;
+    color: #07a1c8;
+}
+
+.waf-theme.metal .waf-listview2 ul li.waf-state-selected {
+    background: #009fc7;
+    color: #fff;
+    text-shadow: 1px 1px 0px #00718d;
+    border-bottom: 1px solid #009fc7;
+}
+
+/* LIGHT */
+.waf-theme.light .waf-listview2 {
+    color: #767676;
+    border-color: #999999;
+    background-color: #fff;
+    -webkit-border-top-left-radius: 8px;
+    -webkit-border-bottom-left-radius: 8px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.waf-theme.light .waf-listview2 ul li {
+    font-weight: bold;
+    border-bottom: 1px solid #dcdcdc;
+}
+
+.waf-theme.light .waf-listview2 ul li:hover {
+    background-color: #e5feff;
+    color: #07a1c8;
+}
+
+.waf-theme.light .waf-listview2 ul li.waf-state-selected {
+    background: #009fc7;
+    color: #fff;
+    text-shadow: 1px 1px 0px #00718d;
+    border-bottom: 1px solid #009fc7;
+}
+
+/* SOFT GRAY */
+.waf-theme.softGray .waf-listview2 {
+    color: #333333;
+    border-color: #cccccc;
+    background-color: #fff;
+    border-radius: 2px;
+}
+
+.waf-theme.softGray .waf-listview2 ul li {
+    font-weight:normal;
+    border-bottom: 1px solid #dcdcdc;
+}
+
+.waf-theme.softGray .waf-listview2 ul li:hover {
+    background: #f9f8fa; /* Old browsers */
+    background: -moz-linear-gradient(top,  #f9f8fa 0%, #e3e3eb 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f9f8fa), color-stop(100%,#e3e3eb)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #f9f8fa 0%,#e3e3eb 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #f9f8fa 0%,#e3e3eb 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #f9f8fa 0%,#e3e3eb 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #f9f8fa 0%,#e3e3eb 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9f8fa', endColorstr='#e3e3eb',GradientType=0 ); /* IE6-9 */
+}
+
+.waf-theme.softGray .waf-listview2 ul li.waf-state-selected {
+    background: #b9b9b9; /* Old browsers */
+    background: -moz-linear-gradient(top,  #b9b9b9 0%, #cbcbcb 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#b9b9b9), color-stop(100%,#cbcbcb)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #b9b9b9 0%,#cbcbcb 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #b9b9b9 0%,#cbcbcb 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #b9b9b9 0%,#cbcbcb 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #b9b9b9 0%,#cbcbcb 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b9b9b9', endColorstr='#cbcbcb',GradientType=0 ); /* IE6-9 */
 }
 
 /* emailList template */
-#waf-body.waf-theme .waf-widget.waf-wlistview li.emailList img{
-    max-width:60px;
-    padding:10px;
+.waf-theme .waf-listview2 li.emailList img {
+    display:inline-block;
+    float:left;
+    margin: 10px 10px 10px 22px;
+    max-width: 50px;
+    border-radius: 4px;
 }
 
-.waf-theme .waf-wlistview li.emailList.selected{
+.waf-theme .waf-listview2 li.emailList.selected {
   background-image: -webkit-gradient(linear, left top, left bottom, from(#e0eaff), to(#e1e4f5));
   background-image: -webkit-linear-gradient(top, #e0eaff 0%, #e1e4f5 100%);
   background-image: -moz-linear-gradient(top, #e0eaff 0%, #e1e4f5 100%);
   background-image: linear-gradient(to bottom, #e0eaff 0%, #e1e4f5 100%);
 }
 
-#waf-body.waf-theme .waf-widget.waf-wlistview li.emailList{
-    border-top-width:0;
-    border-color:#ededed;
-    background-image:none;
-    background-color:#fff;
-    font-weight:bold;
+.waf-theme .waf-listview2 li.emailList {
+    border-top-width: 0;
+    /*border-color: #ededed;*/
+    background-image: none;
+    background-color: transparent;
+    font-weight: normal;
+    overflow: hidden;
+    padding: 0 10px;
 }
 
-#waf-body.waf-theme .waf-widget.waf-wlistview li.emailList.read{
-    background-color:#eee;
-    border-color:#cdcdcd;
-    font-weight:normal;
+/*.waf-theme .waf-listview2 li.emailList.read {
+    background-color: #eee;
+    border-color: #cdcdcd;
+    font-weight: normal;
+}*/
+
+.waf-theme .waf-listview2 li date {
+    display: inline-block;
+    float: right;
+    font-weight: normal;
+    margin: 0 4px;
 }
 
-.waf-theme .waf-widget.waf-wlistview li date, .waf-widget.waf-wlistview li.emailList .attachment{
-    width:26px;
-    height:26px;
-    display:block;
-    float:right;
-    line-height:24px;
-    margin:auto 2px;
-    font-weight:normal;
+.waf-theme .waf-listview2 li.emailList date {
+    width: auto;
+    text-align: right;
 }
 
-.waf-widget.waf-wlistview li.emailList .attachment{
-	color:#D8451E;
-	font-size:20px;
-	text-align:center;
+.waf-listview2 li.emailList .attachment {
+    width: 26px;
+    height: 26px;
+    display: inline-block;
+    float: right;
+    margin: 0 2px;
+    font-weight: normal;
 }
 
-.waf-theme .waf-widget.waf-wlistview li.emailList date{
-    width:auto;
-    text-align:right;
+.waf-theme .waf-listview2 li.emailList .attachment {
+    color: #2687e8;
+    font-size: 20px;
+    text-align: center;
 }
 
-.waf-theme .waf-widget.waf-wlistview li.emailList .tag{
-    background-color:#4179f7;
-    color:white;
-    height:12px;
-    text-transform:uppercase;
-    font-size:10px;
-    line-height:12px;
-    padding:0 6px;
-    position:absolute;
-    bottom:0;
-    right:0;
-    text-align:center;
+.waf-theme .waf-listview2 li.emailList .tag {
+    background-color: #4179f7;
+    color: white;
+    height: 12px;
+    text-transform: uppercase;
+    font-size: 10px;
+    line-height: 12px;
+    padding: 0 6px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    text-align: center;
 }
 
-.waf-theme .waf-widget.waf-wlistview li.emailList .star{
+.waf-theme .waf-listview2 li.emailList .star {
     border: none;
     padding: 0;
     height: 30px;
     position: absolute;
-    right: -8px;
-	font-size:22px;
-	line-height:100%;
-	color:#FFDF0D;
-	background-color:transparent;
+    left: 0px;
+    top: 0px;
+    font-size: 22px;
+    line-height: 100%;
+    color: #e66565;
+    background-color: transparent;
     margin: auto 8px;
     clear: both;
-    top: 15px;
-    z-index:10;
+    z-index: 10;
 }
 
-.waf-theme .waf-widget.waf-wlistview li.emailList .stared{
-
+.waf-theme .waf-listview2 li.emailList p {
+    clear:both;
+    /*padding-right: 100px;*/
+    line-height:150%;
 }
 
-.waf-theme .waf-widget.waf-wlistview li.emailList p{
-    padding-right:100px;
-}
-
-/* navList template */
-.waf-theme .waf-widget.waf-wlistview li.navList{
-    background-color:white;
-    background:none;
-}
-
-.waf-theme .waf-widget.waf-wlistview li.navList strong{
-    float:left;
+.waf-theme .waf-listview2 li.emailList h2 {
     font-weight:bold;
     font-size:14px;
+    text-transform: uppercase;
+    line-height: 100%;
+    margin: 10px 2px;
 }
 
-.waf-theme .waf-widget.waf-wlistview li.navList .thumb{
-    width:40px;
-    height:40px;
-    border-radius:40px;
-    -webkit-border-radius:40px;
+.waf-theme .waf-listview2 li.emailList h3 {
+    line-height:100%;
+    margin:0;
 }
 
-.waf-theme .waf-widget.waf-wlistview li.navList p{
-    clear:left;
+
+/* navList template */
+.waf-theme .waf-listview2 li.navList {
+    background: none;
+    padding: 10px;
 }
 
-.waf-theme .waf-widget.waf-wlistview li.navList a.nav{
+.waf-theme .waf-listview2 li.navList strong {
+    float: left;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.waf-theme .waf-listview2 li.navList .thumb {
+    float:left;
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    -webkit-border-radius: 40px;
+    margin: 0 10px 10px 0;
+}
+
+.waf-theme .waf-listview2 li.navList p {
+    clear:both;
+    line-height:150%;
+}
+
+.waf-theme .waf-listview2 li.navList a.nav {
     font-weight:bold;
     float:right;
-    color:#bbb;
-    font-size:20px;
+    color:#616161;
+    font-size:18px;
+    margin-right:4px;
 }
 
 /* rssList template */
-.waf-theme .waf-widget.waf-wlistview li.rssList{
+.waf-theme .waf-listview2 li.rssList {
     background-color:white;
     background:none;
-    margin:6px 0;
-    height:90px;
+    padding:10px;
+    margin:0;
+    overflow:hidden;
 }
 
-.waf-theme .waf-widget.waf-wlistview li.rssList .thumb{
-    width:50px;
-    height:50px;
-}
-
-.waf-theme .waf-widget.waf-wlistview li.rssList p{
+.waf-theme .waf-listview2 li.rssList p img.thumb {
     float:left;
-    font-weight:bold;
-    height:54px;
-    text-overflow:none;
-    white-space:normal;
-    line-height:14px;
+    width:50px;
+    min-height:50px;
 }
 
-.waf-theme .waf-widget.waf-wlistview li.rssList .links{
-    margin-top:-11px;
+.waf-theme .waf-listview2 li.rssList p {
+    float:left;
+    line-height:150%;
+}
+
+.waf-theme .waf-listview2 li.rssList .links {
+    margin-top:6px;
     color:#aaa;
     text-align:right;
     float:right;
 }
 
-.waf-theme .waf-widget.waf-wlistview li.rssList .links a{
+.waf-theme .waf-listview2 li.rssList .links a {
     color:#48bad6;
-}
+ }
