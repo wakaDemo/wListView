@@ -1,25 +1,26 @@
 {
     "name": "wListView",
-    "author": "4D",
-    "iconPath": "/icons/wListView.png",
-    "version": "1.0.1",
-    "copyright": "(c) 2013 4D",
+    "type": "widget",
+    "studioName": "List View",
+    "iconPath": "/icons/widget-listview.png",
+    "author": "Wakanda SAS",
+    "contributors": [
+        "Yassine BOUKHATA",
+        "Jonathan Argentiero"
+    ],
+    "version": "1.0.0",
+    "copyright": "(c) 2015 Wakanda SAS",
     "repository": {
         "type": "git",
         "url": "https://github.com/Wakanda/wListView.git"
     },
-    "keywords": ["wakanda", "widget"],
-    "engines": {"wakanda" : ">= 9"},
+    "keywords": ["wakanda", "widget", "listview"],
+    "engines": {"wakanda": ">= 11"},
     "license": "MIT",
     "loadDependencies": [
-        {"id": "Widget_V2"},
-        {"id": "wListView/behavior/template.js", "version": "1.0.0", "path": "WIDGETS_CUSTOM"},
-        {"id": "wListView/behavior/layout-template.js", "version": "1.0.0", "path": "WIDGETS_CUSTOM"},
-        {"id": "wListView/studio-template.js", "version": "1.0.0", "path": "WIDGETS_CUSTOM"},
-        {"id": "wListView/source-navigation.js", "version": "1.0.0", "path": "WIDGETS_CUSTOM"},
-        {"id": "wListView/templates.js", "version": "1.0.0", "path": "WIDGETS_CUSTOM"},
-        {"id": "wListView/widget.js", "version": "1.0.0", "path": "WIDGETS_CUSTOM"},
-        {"id": "wListView/css/widget.css", "version": "1.0.0", "path": "WIDGETS_CUSTOM"},
-        {"id": "wListView/designer.js", "studioOnly": true, "version": "1.0.0", "path": "WIDGETS_CUSTOM"}
+        {"package": "Text"},
+        {"file": "widget.js"},
+        {"file": "css/widget.css"},
+        {"file": "designer.js", "studioOnly": true}
     ]
 }
